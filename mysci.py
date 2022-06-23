@@ -1,8 +1,8 @@
 # Columns names and column indices
-columns = {'date':0, 'time':1, 'tempout': 2}
+columns = {'date':0, 'time':1, 'tempout': 2, 'windspeed': 7}
 
 # Data types for each column (if not string)
-types = {'tempout':float}
+types = {'tempout':float, 'windspeed': float}
 
 # Initialize my data variable
 data = {}
@@ -19,12 +19,20 @@ with open(filename, 'r') as datafile:
 
   # Read and pase the rest of the file
   for line in datafile:
-    datum = line.split()
+    split_line = line.split()
     for column in columns:
       i = columns[column]
       t = types.get(column, str)
-      value = t(datum[i])
+      value = t(split_line[i])
       data[column].append(value)  
 
-# DEBUG
+def estimate_windchill(t, v):
+   wci = t - 0.7 * v
+   return wci
 
+windchill = []
+for temp, windspeed in zip(data['tempout'], data['windspeed']):
+    windchill.append(estimate_windchill(temp, windspeed))
+
+# DEBUG
+print(windchill)
