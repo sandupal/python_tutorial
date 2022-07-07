@@ -52,4 +52,4 @@ print('------ ----- --------- ---------- ----------')
 zip_data = zip(data['date'], data['time'], data['windchill'], windchill)
 for date, time, wc_orig, wc_comp in zip_data:
     wc_diff = wc_orig - wc_comp
-    print(f'{date}  {time:>6}  {wc_orig:9.6f}  {wc_comp:9.6f}  {wc_diff:10.6f}
+    print(f'{date}  {time:>6}  {wc_orig:9.6f}  {wc_comp:9.6f}  {wc_diff:10.6f}')
